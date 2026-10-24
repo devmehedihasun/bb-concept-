@@ -1,6 +1,7 @@
 
 const LIVE_DEMO_URLS = {
     1: 'website one/BrightLife-Medical-website.html',
+    2: 'Website-two/RightPath.html',
     3: 'https://claude.ai/artifact/Yai39KaaTjgpchELVZwFWe'
 };
 
@@ -19,6 +20,7 @@ const PORTFOLIO_DATA = [
         ],
         description: "Full-service medical center homepage with a professional animated split-layout hero, floating glass telemetry cards, counter stats banner, interactive accordion, doctor profiles grid, patient testimonials, appointment booking form, and health blog section.",
         visual: "hospital",
+        image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1000&q=85",
         demoUrl: true,
         specs: {
             mobileSpeed: 99,
@@ -42,7 +44,7 @@ const PORTFOLIO_DATA = [
     },
     {
         id: 2,
-        title: "AuraSculpt Aesthetic Dermatology & Dental Clinic",
+        title: "Right path hospital behavioral health complete 8 page widescreen website",
         category: "Specialized Clinic",
         platform: "WordPress + Elementor Ready",
         tags: [
@@ -53,6 +55,8 @@ const PORTFOLIO_DATA = [
         ],
         description: "High-converting, visual-first clinic landing page optimized for aesthetic procedures and local search visibility. Built with streamlined booking flows and click-to-call conversion tracking.",
         visual: "clinic",
+        image: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?auto=format&fit=crop&w=1000&q=85",
+        demoUrl: true,
         specs: {
             mobileSpeed: 98,
             desktopSpeed: 100,
@@ -71,41 +75,42 @@ const PORTFOLIO_DATA = [
             stack: ["WordPress 6.4+", "Custom Theme", "ACF Pro", "GSAP Animations", "GTM Integration"]
         }
     },
-    {
-        id: 3,
-        title: "Right Path Recovery & Behavioral Health Hospital",
-        category: "Multi-Specialty Hospital",
-        platform: "WordPress + Elementor Ready",
-        tags: [
-            { label: "Flagship Live Demo", style: "emerald" },
-            { label: "Mega Menu & Insurance Funnel", style: "cyan" },
-            { label: "5-Level Care Continuum", style: "teal" },
-            { label: "Dual-Diagnosis Specialist", style: "cyan" },
-            { label: "60-Day Guarantee CTA", style: "navy" }
-        ],
-        description: "Enterprise-grade behavioral health hospital homepage for San Diego's Right Path Recovery. Features mega-menu navigation, interactive 4-step insurance verification funnel, 5-level continuum of care tabs, dual-campus showcase, leadership profiles, and full clinical copywriting.",
-        visual: "hospital",
-        demoUrl: true,
-        specs: {
-            mobileSpeed: 99,
-            desktopSpeed: 100,
-            seoScore: 98,
-            accessibility: 96,
-            features: [
-                "Interactive mega-menu with 3-column dropdowns & care-level cards",
-                "4-step HIPAA-compliant insurance verification lead funnel",
-                "5-tab interactive continuum of care (Detox → Aftercare)",
-                "Founder video modal with play animation",
-                "Recovery Quotient™ data dashboard with progress bars",
-                "Dual San Diego campus cards (University City + Mission Valley)",
-                "Dual-diagnosis conditions bento grid with therapy modality ticker",
-                "60-Day Treatment Guarantee conversion banner",
-                "Smooth FAQ accordion with 5 key pre-admission questions",
-                "Crisis 988 lifeline footer with full compliance data"
-            ],
-            stack: ["WordPress 6.4+", "Elementor Pro", "Custom ACF Fields", "WP REST API", "Cloudflare CDN"]
-        }
-    }
+    // {
+    //     id: 3,
+    //     title: "Right Path Recovery & Behavioral Health Hospital",
+    //     category: "Multi-Specialty Hospital",
+    //     platform: "WordPress + Elementor Ready",
+    //     tags: [
+    //         { label: "Flagship Live Demo", style: "emerald" },
+    //         { label: "Mega Menu & Insurance Funnel", style: "cyan" },
+    //         { label: "5-Level Care Continuum", style: "teal" },
+    //         { label: "Dual-Diagnosis Specialist", style: "cyan" },
+    //         { label: "60-Day Guarantee CTA", style: "navy" }
+    //     ],
+    //     description: "Enterprise-grade behavioral health hospital homepage for San Diego's Right Path Recovery. Features mega-menu navigation, interactive 4-step insurance verification funnel, 5-level continuum of care tabs, dual-campus showcase, leadership profiles, and full clinical copywriting.",
+    //     visual: "hospital",
+    //     image: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=1000&q=85",
+    //     demoUrl: true,
+    //     specs: {
+    //         mobileSpeed: 99,
+    //         desktopSpeed: 100,
+    //         seoScore: 98,
+    //         accessibility: 96,
+    //         features: [
+    //             "Interactive mega-menu with 3-column dropdowns & care-level cards",
+    //             "4-step HIPAA-compliant insurance verification lead funnel",
+    //             "5-tab interactive continuum of care (Detox → Aftercare)",
+    //             "Founder video modal with play animation",
+    //             "Recovery Quotient™ data dashboard with progress bars",
+    //             "Dual San Diego campus cards (University City + Mission Valley)",
+    //             "Dual-diagnosis conditions bento grid with therapy modality ticker",
+    //             "60-Day Treatment Guarantee conversion banner",
+    //             "Smooth FAQ accordion with 5 key pre-admission questions",
+    //             "Crisis 988 lifeline footer with full compliance data"
+    //         ],
+    //         stack: ["WordPress 6.4+", "Elementor Pro", "Custom ACF Fields", "WP REST API", "Cloudflare CDN"]
+    //     }
+    // }
 ];
 
 /* ========================================
@@ -142,14 +147,16 @@ const App = (() => {
 
         const patternClass = item.visual === 'hospital' ? 'portfolio-card__pattern--grid' : 'portfolio-card__pattern--wave';
         const illustration = item.visual === 'hospital' ? hospitalSVG : clinicSVG;
-        const title = item.id === 1 && LIVE_DEMO_URLS[item.id]
+        const title = LIVE_DEMO_URLS[item.id]
             ? `<a href="${LIVE_DEMO_URLS[item.id]}" target="_blank" rel="noopener">${item.title}</a>`
             : item.title;
 
         return `
     <article class="portfolio-card reveal" data-id="${item.id}" data-category="${item.category}" data-platform="${item.platform}">
       <div class="portfolio-card__visual">
-        <div class="portfolio-card__gradient portfolio-card__gradient--${item.visual}"></div>
+        <div class="portfolio-card__gradient portfolio-card__gradient--${item.visual}">
+          <img src="${item.image}" alt="${item.title}" class="portfolio-card__image" />
+        </div>
         <div class="portfolio-card__pattern ${patternClass}"></div>
         ${illustration}
         <span class="portfolio-card__platform">
